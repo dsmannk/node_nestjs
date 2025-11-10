@@ -55,7 +55,7 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-```
+
 
 ## Deployment
 
@@ -67,6 +67,18 @@ If you are looking for a cloud-based platform to deploy your NestJS application,
 $ npm install -g @nestjs/mau
 $ mau deploy
 ```
+
+### 패키지 설치
+```
+npm install @nestjs/common @nestjs/core reflect-metadata rxjs
+```
+
+### 몽고디비
+```
+1. cd chapter8/blog
+2. npm install @nestjs/mongoose mongoose
+```
+
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
