@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  nest-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_DIR: ${APP_DIR:-chapter8}   # 기본 chapter8, 환경변수로 변경 가능
+    container_name: nest-hello
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - nest_modules:/app/node_modules
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    command: >
+      sh -c "cd ${APP_DIR:-chapter8} && npm run start:dev"
+
+volumes:
+  nest_modules:
+
