@@ -2,3 +2,7 @@
 
 chapter8/hello-nestjs/node_modules/
 chapter8/hello-nestjs/dist/
+chapter9/config-test/node_modules/
+chapter9/config-test/dist/
+chapter10/nest-auth-test/dist/
+chapter10/nest-auth-test/node_modules/
