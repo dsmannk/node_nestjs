@@ -21,6 +21,21 @@ let AppController = class AppController {
         const message = this.configService.get('MESSAGE');
         return message;
     }
+    getServiceUrl() {
+        return this.configService.get('SERVICE_URL');
+    }
+    getInfo() {
+        console.log(this.configService.get('logLevel'));
+        console.log(this.configService.get('apiVersion'));
+        return this.configService.get('dbInfo');
+    }
+    getRedisInfo() {
+        return `${this.configService.get('redis.host')}:${this.configService.get('redis.port')}`;
+    }
+    getServerUrl() {
+        console.log(this.configService.get('SERVICE_URL'));
+        return this.configService.get('SERVICE_URL');
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -29,6 +44,30 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('service-url'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getServiceUrl", null);
+__decorate([
+    (0, common_1.Get)('db-info'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getInfo", null);
+__decorate([
+    (0, common_1.Get)('redis-info'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], AppController.prototype, "getRedisInfo", null);
+__decorate([
+    (0, common_1.Get)('server-url'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getServerUrl", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [config_1.ConfigService])

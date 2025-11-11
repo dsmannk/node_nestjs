@@ -70,6 +70,23 @@ $ mau deploy
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
+
+## yaml 설치
+```
+npm i js-yaml
+npm i -D @types/js-yaml
+```
+
+## 참고 문헌
+```
+vault : https://www.vaultproject.io/
+ - 민감한 환경 변수를 관리하는 설정 파일 저장소
+주키퍼 : https://zookeeper.apache.org/
+ - 서버 간 설정을 동기화하는데 사용할 수 있는 주키퍼 서버
+NestJS 설정 공식 문서 : https://docs.nestjs.com/techniques/configuration
+```
+
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
