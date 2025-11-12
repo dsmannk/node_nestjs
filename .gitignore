@@ -9,3 +9,5 @@ chapter10/nest-auth-test/node_modules/
 chapter11/nest-auth-test/dist/
 chapter11/nest-auth-test/node_modules/
 chapter11/nest-auth-test/.env
+chapter12/nest-file-upload/dist/
+chapter12/nest-file-upload/node_modules/
