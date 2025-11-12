@@ -105,6 +105,12 @@ $ npm install 0D @types/bcrypt
 $ npm install cookie-parser
 ```
 
+### 패스포트 라이브러리 설치 
+``` 
+$ npm i @nestjs/passport passport passport-local express-session
+$ npm i -D @types/passport-local @types/express-session
+```
+
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
 ## Resources
