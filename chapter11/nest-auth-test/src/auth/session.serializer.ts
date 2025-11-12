@@ -11,6 +11,7 @@ export class SessionSerializer extends PassportSerializer {
 
     // 세션에 정보를 저장할 때 사용
     serializeUser(user: any, done: (err: any, user: any) => void): any {
+        //done(null, user.id); // 세션에 저장할 정보
         done(null, user.email); // 세션에 저장할 정보
     }
 
