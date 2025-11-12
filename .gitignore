@@ -6,3 +6,6 @@ chapter9/config-test/node_modules/
 chapter9/config-test/dist/
 chapter10/nest-auth-test/dist/
 chapter10/nest-auth-test/node_modules/
+chapter11/nest-auth-test/dist/
+chapter11/nest-auth-test/node_modules/
+chapter11/nest-auth-test/.env

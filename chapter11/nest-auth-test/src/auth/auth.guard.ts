@@ -1,0 +1,79 @@
+import {CanActivate, ExecutionContext, Injectable} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { AuthService } from "./auth.service";
+import {In} from "typeorm";
+import {Observable} from "rxjs";
+
+@Injectable() // Injectable이 있으니 프로바이더
+export class LoginGuard implements CanActivate { // CanActivate 인터페이스 구현
+    constructor(private authService: AuthService) {} // authServic를 주입받음
+
+    // CanActivate 인터페이스의 메서드
+    async canActivate(context: ExecutionContext): Promise<boolean> {
+        // 컨텍스트에서 리퀘스트 정보를 가져옴
+        const request = context.switchToHttp().getRequest();
+
+        // 쿠키 파서 보호
+        const cookies = request.cookies ?? {}; // 기본값
+        const loginCookie  = cookies['login'];
+
+        console.log('[LoginGuard] cookies = ', request.cookies);
+
+        // 쿠키가 없을 때
+        if (loginCookie) {
+            console.log('[LoginGuard] login cookie found');
+            try {
+                request.user = JSON.parse(loginCookie);
+            } catch {
+                console.warn('[LoginGuard] Invalid cookie JSON');
+                return false;
+            }
+            return true;
+        }
+
+        // 유저 유효성 검사
+        const email     = request?.body?.email ?? request?.user?.email ?? null;
+        const password  = request?.body?.password ?? request?.user?.password ?? null;
+
+        if (!email || !password) {
+            console.warn('[LoginGuard] Invalid user info:', email, password);
+            return false;
+        }
+
+        // 인증 로직은 기존의 authService.validateUser 사용
+        const user = await this.authService.validateUser(
+            request.body.email,
+            request.body.password,
+        );
+
+        // 유저 정보가 없으면 false 반환
+        if (!user) {
+            return false;
+        }
+
+        // 있으면 request에 user 정보를 추가하고 true 반환
+        request.user = user;
+
+        console.log('request.user = ', request.user);
+        return true;
+    }
+}
+
+@Injectable()
+export class LocalAuthGuard extends AuthGuard('local') {
+    async cnaActivate(context: any): Promise<boolean> {
+        const result = (await super.canActivate(context)) as boolean;
+        // 로컬 스트레티지 실행
+        const request = context.switchToHttp().getRequest();
+        await super.logIn(request); // 세션 저장
+        return result;
+    }
+}
+
+@Injectable()
+export class AuthenticatedGuard implements CanActivate {
+    canActivate(context: ExecutionContext): boolean {
+        const request = context.switchToHttp().getRequest();
+        return request.isAuthenticated(); // 세션에서 정보를 읽어서 인증 확인
+    }
+}
