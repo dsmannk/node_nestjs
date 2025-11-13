@@ -12,3 +12,5 @@ chapter11/nest-auth-test/.env
 chapter12/nest-file-upload/dist/
 chapter12/nest-file-upload/node_modules/
 chapter13/echo-websocket/node_modules/
+chapter13/nest-chat/node_modules/
+chapter13/nest-chat/dist/
